@@ -1,0 +1,7 @@
+streamlit
+yfinance
+pandas
+plotly
+requests
+mysql-connector-python
+python-dotenv
