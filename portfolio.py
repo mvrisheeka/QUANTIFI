@@ -128,3 +128,4 @@ def portfolio_analysis():
 
     st.write(f"📈 *Expected Returns:* {avg_return * 100:.2f}%")  # Display expected return
     st.write(f"⚠ *Portfolio Risk (Volatility):* {avg_risk * 100:.2f}%")  # Display portfolio risk
+#portfolio code end
