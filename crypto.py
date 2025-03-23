@@ -30,3 +30,5 @@ def crypto_ui():
             st.error("⚠️ Failed to fetch cryptocurrency data. Please try again later.")
     else:
         st.error("⚠️ Missing API Key. Set COINMARKETCAP_API_KEY in secrets.toml.")
+        
+#Crypto file
