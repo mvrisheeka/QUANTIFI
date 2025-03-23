@@ -7,6 +7,7 @@ import chatbot
 import crypto
 from db_config import get_db_connection
 
+# This is the main file for the project.
 # Set Streamlit Page Configuration
 st.set_page_config(page_title="QUANTIFI", layout="wide")
 st.title("Welcome to QUANTIFI")
