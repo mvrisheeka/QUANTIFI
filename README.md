@@ -41,7 +41,7 @@ QUANTIFI is an AI-driven stock analysis platform that enables users to track sto
 - Buy, sell, and analyze stocks seamlessly.
 
 ## Contributors
-- **Vrisheeka Mulakala, Nanda Gopal, Gunda Rama Praneetha, Piyali Choudhury, Sree Chetana, Ameya Bhosekar, Sriram, Ankit Kumar Sahu, Agam Bhatia, Shrey Jha** 
+- **Vrisheeka Mulakala, Nanda Gopal, Gunda Rama Praneetha, Piyali Choudhury, Sree Chetana, Ameya Bhosekar, Sriram, Ankit Kumar Sahu, Agam Bhatia, Shreya (Call when free: 99990 82750)** 
 
 ## License
 This project is licensed under the MIT License.
