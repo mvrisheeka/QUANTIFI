@@ -43,3 +43,4 @@ def verify_user(username, password):
     cursor.close()
     conn.close()
     return None
+#hi
