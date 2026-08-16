@@ -196,6 +196,5 @@ else:
     elif page == "AI Chatbot":  
         chatbot.chatbot_ui()  
 
-    # -------------------------
     elif page == "Crypto Prices":
         crypto.crypto_ui()
