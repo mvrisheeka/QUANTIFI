@@ -20,9 +20,9 @@ def add_user(username, password):
     hashed_password = hash_password(password)
     try:
         cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, hashed_password))
-        return "✅ User registered successfully!"
+        return "User registered successfully!"
     except mysql.connector.Error as err:
-        return f"❌ Error: {err}"
+        return f" Error: {err}"
     finally:
         cursor.close()
         conn.close()
@@ -43,4 +43,4 @@ def verify_user(username, password):
     cursor.close()
     conn.close()
     return None
-#hi
+
