@@ -16,11 +16,10 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Optional: Insert a test user
 INSERT INTO users (username, password) 
 VALUES ('test_user', SHA2('test_password', 256));
 
-USE trading_platform;  -- Ensure you're using the correct database
+USE trading_platform; 
 
 CREATE TABLE IF NOT EXISTS portfolio (
     id INT AUTO_INCREMENT PRIMARY KEY,
