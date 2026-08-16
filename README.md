@@ -13,7 +13,7 @@ QUANTIFI is an AI-driven stock analysis platform that enables users to track sto
 
 ## Technologies Used
 - **Frontend**: Streamlit (Python-based UI framework)
-- **Backend**: Python (Flask for database interaction)
+- **Backend**: Python and Qiskit (Flask for database interaction)
 - **Database**: MySQL (for user and stock data management)
 - **APIs**: Yahoo Finance (for stock data)
 
