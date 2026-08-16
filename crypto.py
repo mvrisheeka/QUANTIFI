@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 
 def crypto_ui():
-    st.title("💰 Live Cryptocurrency Prices")
+    st.title(" Live Cryptocurrency Prices")
     api_key = st.secrets["COINMARKETCAP_API_KEY"]
     
     if api_key:
@@ -27,8 +27,8 @@ def crypto_ui():
             df = pd.DataFrame(crypto_data, columns=["Symbol", "Name", "Price (USD)", "Market Cap", "24h Change (%)"])
             st.dataframe(df)
         else:
-            st.error("⚠️ Failed to fetch cryptocurrency data. Please try again later.")
+            st.error(" Failed to fetch cryptocurrency data. Please try again later.")
     else:
-        st.error("⚠️ Missing API Key. Set COINMARKETCAP_API_KEY in secrets.toml.")
+        st.error(" Missing API Key. Set COINMARKETCAP_API_KEY in secrets.toml.")
         
 #Crypto file
