@@ -105,8 +105,6 @@ QUANTIFI/
 ## Contributors
 - **Vrisheeka Mulakala, Nanda Gopal, Gunda Rama Praneetha, Piyali Choudhury, Sree Chetana, Ameya Bhosekar, Sriram, Ankit Kumar Sahu, Agam Bhatia, Shrey Jha**
 
-## License
-This project is licensed under the MIT License.
 
 ## Performance Notes
 - Quantum optimizer works best with 3-8 stocks
