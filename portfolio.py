@@ -19,7 +19,7 @@ def get_portfolio_data(user_id):
     if data:
         return pd.DataFrame(data, columns=["Stock", "Quantity", "Avg. Price"])
     else:
-        return pd.DataFrame(columns=["Stock", "Quantity", "Avg. Price"])
+        return pd.DataFrame(columns=["Stock", "Quantity", "Avg. Price"]) 
 
 def fetch_stock_prices(stocks):
     prices = {}
@@ -129,7 +129,7 @@ def portfolio_analysis():
     st.markdown("---")
     st.markdown("<h2 style='text-align: center; color: #00d4ff;'>🔬 Quantum Portfolio Optimizer (QAOA)</h2>", unsafe_allow_html=True)
     
-    if st.button(" Optimize Portfolio with Quantum Algorithm", key="quantum_opt"):
+    if st.button("⚛️ Optimize Portfolio with Quantum Algorithm", key="quantum_opt"):
         with st.spinner("Running quantum optimization on your portfolio..."):
             stocks_list = portfolio["Stock"].tolist()
             
@@ -137,24 +137,29 @@ def portfolio_analysis():
             for stock in stocks_list:
                 metrics = calculate_stock_metrics(stock)
                 stocks_data[stock] = metrics
-            
-            optimized_allocation = quantum_optimizer.quantum_portfolio_optimization(stocks_data)
-            
+
+            # Use the new QAOA pipeline by default; it falls back to classical when necessary
+            try:
+                optimized_allocation = quantum_optimizer.qaoa_optimize(stocks_data, shots=1024, p=1, max_qubits=12)
+            except Exception as e:
+                st.error(f"Quantum optimization failed: {e}")
+                optimized_allocation = quantum_optimizer.classical_optimization_fallback(stocks_data)
+
             report = quantum_optimizer.generate_optimization_report(
                 optimized_allocation, stocks_data, portfolio
             )
-            
+
             st.success("Quantum optimization complete!")
             st.text(report)
-            
+
             opt_df = pd.DataFrame([
                 {"Stock": stock, "Quantum Weight": f"{weight*100:.2f}%", "Current Weight": f"{portfolio[portfolio['Stock']==stock]['Allocation (%)'].values[0]:.2f}%"}
                 for stock, weight in optimized_allocation.items() if weight > 0.001
             ])
-            
+
             st.markdown("**Recommended vs Current Allocation:**")
             st.dataframe(opt_df)
-            
+
             fig_comparison = go.Figure(data=[
                 go.Bar(name='Current Allocation', x=list(optimized_allocation.keys()), 
                        y=[portfolio[portfolio['Stock']==s]['Allocation (%)'].values[0] if s in portfolio['Stock'].values else 0 for s in optimized_allocation.keys()]),
