@@ -2,6 +2,7 @@
 
 QUANTIFI is a Streamlit-based interactive application that helps users track stocks, manage portfolios, run portfolio analysis, and experiment with a demonstrative quantum portfolio optimizer (QAOA) implemented with Qiskit. It is intended as a research/demo platform for combining classical financial analytics with quantum-inspired optimization techniques.
 
+
 ## Features
 
 - Trading interface (buy/sell) backed by a simple MySQL portfolio store
