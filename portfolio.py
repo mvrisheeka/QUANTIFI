@@ -7,7 +7,6 @@ import plotly.graph_objects as go
 import quantum_optimizer
 import numpy as np
 
-# Fetch portfolio data from the database
 def get_portfolio_data(user_id):
     conn = db_config.get_db_connection() 
     cursor = conn.cursor()
