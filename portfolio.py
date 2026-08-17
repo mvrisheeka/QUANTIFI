@@ -129,7 +129,7 @@ def portfolio_analysis():
     st.markdown("---")
     st.markdown("<h2 style='text-align: center; color: #00d4ff;'>🔬 Quantum Portfolio Optimizer (QAOA)</h2>", unsafe_allow_html=True)
     
-    if st.button("⚛️ Optimize Portfolio with Quantum Algorithm", key="quantum_opt"):
+    if st.button(" Optimize Portfolio with Quantum Algorithm", key="quantum_opt"):
         with st.spinner("Running quantum optimization on your portfolio..."):
             stocks_list = portfolio["Stock"].tolist()
             
