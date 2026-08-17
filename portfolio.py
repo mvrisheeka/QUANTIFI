@@ -110,6 +110,6 @@ def portfolio_analysis():
     avg_return = sum(stock_returns.values()) / len(stock_returns) 
     avg_risk = sum(yf.Ticker(stock + ".BO").history(period="6mo")["Close"].pct_change().std() for stock in portfolio["Stock"]) / len(stock_returns)  
 
-    st.write(f"📈 *Expected Returns:* {avg_return * 100:.2f}%")  
-    st.write(f"⚠ *Portfolio Risk (Volatility):* {avg_risk * 100:.2f}%")  
+    st.write(f" *Expected Returns:* {avg_return * 100:.2f}%")  
+    st.write(f" *Portfolio Risk (Volatility):* {avg_risk * 100:.2f}%")  
 #portfolio code end
