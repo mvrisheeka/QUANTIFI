@@ -8,7 +8,6 @@ import crypto
 import portfolio
 from db_config import get_db_connection
 from decimal import Decimal
-
 st.set_page_config(page_title="QUANTIFI", layout="wide")
 st.title("Welcome to QUANTIFI")
 
