@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 
+
 def crypto_ui():
     st.title("Live Cryptocurrency Prices")
     api_key = st.secrets["COINMARKETCAP_API_KEY"]
