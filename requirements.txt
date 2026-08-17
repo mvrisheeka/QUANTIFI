@@ -8,5 +8,6 @@ python-dotenv
 qiskit==0.43.2
 qiskit-aer==0.13.1
 qiskit-ibm-runtime==0.15.0
+qiskit-optimization
 numpy
 scipy
