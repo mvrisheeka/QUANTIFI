@@ -1,6 +1,7 @@
 import unittest
 from quantum_optimizer import qaoa_optimize
 
+
 class TestQAOAOptimize(unittest.TestCase):
     def test_small_portfolio(self):
         stocks_data = {
