@@ -14,6 +14,7 @@ except Exception as e:
     QISKIT_AVAILABLE = False
     _QISKIT_IMPORT_ERROR = e
 
+    
 def normalize_portfolio_weights(allocation):
     total = sum(allocation.values())
     if total == 0:
