@@ -5,3 +5,8 @@ plotly
 requests
 mysql-connector-python
 python-dotenv
+qiskit==0.43.2
+qiskit-aer==0.13.1
+qiskit-ibm-runtime==0.15.0
+numpy
+scipy
