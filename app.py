@@ -73,9 +73,9 @@ else:
             latest_price = Decimal(str(stock_price["Close"].iloc[-1])) if not stock_price.empty else None
 
             if latest_price:
-                st.metric(f"📊 {symbol} Latest Price", f"₹{latest_price:.2f}")
+                st.metric(f" {symbol} Latest Price", f"₹{latest_price:.2f}")
 
-            st.subheader(f"📊 {symbol} Candlestick Chart")
+            st.subheader(f" {symbol} Candlestick Chart")
             stock_data = stock_info.history(period="1mo", interval="1d")
             if not stock_data.empty:
                 fig = go.Figure(data=[go.Candlestick(
@@ -104,7 +104,7 @@ else:
             conn = get_db_connection()
             cursor = conn.cursor()
 
-            if col1.button("🛒 Buy"):
+            if col1.button(" Buy"):
                 cursor.execute("SELECT quantity, avg_price FROM portfolio WHERE user_id=%s AND stock_symbol=%s", 
                                (current_user_id, symbol))
                 existing_stock = cursor.fetchone()
@@ -157,7 +157,7 @@ else:
 
     # QUANTUM OPTIMIZER FEATURE
     elif page == "Quantum Optimizer":
-        st.markdown("<h1 style='text-align: center; color: #00d4ff;'>⚛️ Quantum Portfolio Optimizer</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center; color: #00d4ff;'> Quantum Portfolio Optimizer</h1>", unsafe_allow_html=True)
         st.markdown("---")
         
         current_user_id = st.session_state.get("user_id")
@@ -197,10 +197,10 @@ else:
                 st.dataframe(portfolio_df)
                 
                 st.markdown("---")
-                st.info("📊 Click the button below to run quantum optimization on your portfolio")
+                st.info(" Click the button below to run quantum optimization on your portfolio")
                 
-                if st.button("🚀 Launch Quantum Portfolio Optimizer", key="launch_qaoa"):
-                    with st.spinner("⏳ Running quantum simulation..."):
+                if st.button(" Launch Quantum Portfolio Optimizer", key="launch_qaoa"):
+                    with st.spinner(" Running quantum simulation..."):
                         portfolio.portfolio_analysis()
             else:
                 st.warning(" Your portfolio is empty! Add stocks first to use the quantum optimizer.")
