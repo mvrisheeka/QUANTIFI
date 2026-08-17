@@ -116,12 +116,4 @@ Open http://localhost:8501 in your browser (Streamlit will print the URL).
 
 Contributions, bug reports and pull requests are welcome. If you open a PR, please include a short description of the change and any setup steps to reproduce.
 
-## License
 
-No license specified in this repository. Add a LICENSE file if you want to make the project open-source.
-
-## Further reading / next steps
-
-- Improve authentication and session management (password hashing, password reset)
-- Add cash balance / transaction history and order matching
-- Extend quantum optimizer to support more sophisticated risk models and portfolio constraints
