@@ -1,6 +1,7 @@
 import mysql.connector
 import hashlib
 
+
 def get_db_connection():
     conn = mysql.connector.connect(
         host="localhost",
