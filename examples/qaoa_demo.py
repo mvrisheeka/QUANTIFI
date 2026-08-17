@@ -1,5 +1,4 @@
 # Minimal QAOA demo for QUANTIFI
-
 from quantum_optimizer import qaoa_optimize
 
 if __name__ == '__main__':
