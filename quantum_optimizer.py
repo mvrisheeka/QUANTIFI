@@ -6,7 +6,6 @@ from qiskit_aer import AerSimulator
 from qiskit_ibm_runtime import QiskitRuntimeService
 import pandas as pd
 from decimal import Decimal
-
 def normalize_portfolio_weights(allocation):
     total = sum(allocation.values())
     if total == 0:
