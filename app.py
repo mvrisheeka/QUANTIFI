@@ -5,6 +5,7 @@ import pandas as pd
 import db_config
 import chatbot
 import crypto
+import portfolio
 from db_config import get_db_connection
 from decimal import Decimal
 
@@ -54,7 +55,7 @@ else:
         st.session_state.pop("user_id", None)
         st.session_state.pop("username", None)
         st.rerun()
-    page = st.sidebar.radio(" Menu", ["Trading", "Portfolio Analysis", "SIP Investment", "AI Chatbot", "Crypto Prices"])
+    page = st.sidebar.radio(" Menu", ["Trading", "Portfolio Analysis", "Quantum Optimizer", "SIP Investment", "AI Chatbot", "Crypto Prices"])
 
     # TRADING FEATURE
     if page == "Trading":
@@ -152,26 +153,61 @@ else:
 
     # PORTFOLIO ANALYSIS FEATURE 
     elif page == "Portfolio Analysis":
-        st.title(" Portfolio Analysis")
-        current_user_id = st.session_state.get("user_id")
+        portfolio.portfolio_analysis()
 
+    # QUANTUM OPTIMIZER FEATURE
+    elif page == "Quantum Optimizer":
+        st.markdown("<h1 style='text-align: center; color: #00d4ff;'>⚛️ Quantum Portfolio Optimizer</h1>", unsafe_allow_html=True)
+        st.markdown("---")
+        
+        current_user_id = st.session_state.get("user_id")
+        
         if current_user_id:
+            st.markdown("""
+            ### About Quantum Portfolio Optimization
+            
+            This feature uses **Quantum Approximate Optimization Algorithm (QAOA)** powered by **Qiskit** 
+            to find optimal portfolio allocations. The quantum algorithm:
+            
+            - Analyzes multiple stocks in your portfolio simultaneously
+            - Considers risk-return tradeoffs at quantum level
+            - Provides recommendations based on quantum-computed probability distributions
+            - Handles up to 8+ stocks efficiently using quantum superposition
+            
+            **How it works:**
+            1. Your current portfolio is analyzed
+            2. Risk and return metrics are calculated for each stock
+            3. Quantum circuits are constructed with QAOA ansatz
+            4. Qiskit simulator runs the quantum optimization
+            5. Results are compared with your current allocation
+            """)
+            
+            st.markdown("---")
+            
             conn = get_db_connection()
             cursor = conn.cursor()
             cursor.execute("SELECT stock_symbol, quantity, avg_price FROM portfolio WHERE user_id=%s", (current_user_id,))
             portfolio_data = cursor.fetchall()
             conn.close()
-
+            
             if portfolio_data:
-                portfolio_df = pd.DataFrame(portfolio_data, columns=["Stock Symbol", "Quantity", "Avg Price"])
+                portfolio_df = pd.DataFrame(portfolio_data, columns=["Stock", "Quantity", "Avg Price"])
+                
+                st.subheader("Your Current Portfolio:")
                 st.dataframe(portfolio_df)
+                
+                st.markdown("---")
+                st.info("📊 Click the button below to run quantum optimization on your portfolio")
+                
+                if st.button("🚀 Launch Quantum Portfolio Optimizer", key="launch_qaoa"):
+                    with st.spinner("⏳ Running quantum simulation..."):
+                        portfolio.portfolio_analysis()
             else:
-                st.warning(" Your portfolio is empty!")
+                st.warning(" Your portfolio is empty! Add stocks first to use the quantum optimizer.")
         else:
             st.error(" User not authenticated. Please log in.")
 
     # SIP FEATURE
-
     elif page == "SIP Investment":
         st.title(" Systematic Investment Plan (SIP)")
     
