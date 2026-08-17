@@ -10,7 +10,6 @@ import numpy as np
 def get_portfolio_data(user_id):
     conn = db_config.get_db_connection() 
     cursor = conn.cursor()
-    
     cursor.execute("SELECT stock_symbol, quantity, avg_price FROM portfolio WHERE user_id = %s", (user_id,))
     data = cursor.fetchall()  
     cursor.close()
@@ -51,20 +50,19 @@ def calculate_stock_metrics(stock_symbol, period="6mo"):
         return {"return": 0.05, "volatility": 0.15}
 
 def portfolio_analysis():
-    st.markdown("<h1 style='text-align: center; color: white;'> Portfolio Analysis</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: white;'>Portfolio Analysis</h1>", unsafe_allow_html=True)
     user_id = st.session_state.get("user_id")  
     if not user_id:
-        st.error(" Please log in to view your portfolio.") 
+        st.error("Please log in to view your portfolio.") 
         return
 
     portfolio = get_portfolio_data(user_id)
     if portfolio.empty:
-        st.warning(" Your portfolio is empty! Start investing to see insights.")  
+        st.warning("Your portfolio is empty! Start investing to see insights.")  
         return
     
     stock_prices = fetch_stock_prices(portfolio["Stock"].tolist())
     portfolio["Latest Price"] = portfolio["Stock"].apply(lambda stock: stock_prices.get(stock, None))  
- 
     portfolio["Investment Value"] = portfolio["Latest Price"] * portfolio["Quantity"]
     total_value = portfolio["Investment Value"].sum()
 
@@ -77,7 +75,7 @@ def portfolio_analysis():
     def highlight_loss(val):
         return f"color: {'green' if val > 0 else 'red'}; font-weight: bold" 
 
-    st.markdown(" Your Portfolio Summary")
+    st.markdown("Your Portfolio Summary")
     styled_df = portfolio.style.applymap(highlight_loss, subset=["Profit/Loss"]).format(
         {"Latest Price": "₹{:.2f}", "Avg. Price": "₹{:.2f}", "Investment Value": "₹{:.2f}", "Profit/Loss": "₹{:.2f}", "Allocation (%)": "{:.2f}%"})
     st.dataframe(styled_df)
@@ -103,7 +101,7 @@ def portfolio_analysis():
     )
     st.plotly_chart(fig_bar, use_container_width=True)  
 
-    st.markdown(" Cumulative Returns Over Time")
+    st.markdown("Cumulative Returns Over Time")
     fig_line = go.Figure()
     for stock in portfolio["Stock"]:
         stock_data = yf.Ticker(stock + ".BO").history(period="6mo")["Close"]
@@ -123,22 +121,20 @@ def portfolio_analysis():
     avg_return = sum(stock_returns.values()) / len(stock_returns) 
     avg_risk = sum(yf.Ticker(stock + ".BO").history(period="6mo")["Close"].pct_change().std() for stock in portfolio["Stock"]) / len(stock_returns)  
 
-    st.write(f" *Expected Returns:* {avg_return * 100:.2f}%")  
-    st.write(f" *Portfolio Risk (Volatility):* {avg_risk * 100:.2f}%")
+    st.write(f"Expected Returns: {avg_return * 100:.2f}%")  
+    st.write(f"Portfolio Risk (Volatility): {avg_risk * 100:.2f}%")
 
     st.markdown("---")
-    st.markdown("<h2 style='text-align: center; color: #00d4ff;'>🔬 Quantum Portfolio Optimizer (QAOA)</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: #00d4ff;'>Quantum Portfolio Optimizer (QAOA)</h2>", unsafe_allow_html=True)
     
-    if st.button("⚛️ Optimize Portfolio with Quantum Algorithm", key="quantum_opt"):
+    if st.button("Optimize Portfolio with Quantum Algorithm", key="quantum_opt"):
         with st.spinner("Running quantum optimization on your portfolio..."):
             stocks_list = portfolio["Stock"].tolist()
-            
             stocks_data = {}
             for stock in stocks_list:
                 metrics = calculate_stock_metrics(stock)
                 stocks_data[stock] = metrics
 
-            # Use the new QAOA pipeline by default; it falls back to classical when necessary
             try:
                 optimized_allocation = quantum_optimizer.qaoa_optimize(stocks_data, shots=1024, p=1, max_qubits=12)
             except Exception as e:

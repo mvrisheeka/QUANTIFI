@@ -23,8 +23,7 @@ def get_chat_response(user_input):
         return f"Error: {response.status_code} - {response.text}"
 
 def chatbot_ui():
-    st.title(" AI Chatbot") 
-
+    st.title("AI Chatbot") 
     user_input = st.text_input("Enter your message:")
 
     if st.button("Send"):
