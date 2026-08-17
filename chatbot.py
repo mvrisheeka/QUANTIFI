@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import json
 
+
 def get_chat_response(user_input):
     url = "https://openrouter.ai/api/v1/chat/completions"  
     headers = {
