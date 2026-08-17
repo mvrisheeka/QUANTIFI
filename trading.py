@@ -3,6 +3,7 @@ from db_config import get_db_connection
 import time
 from decimal import Decimal
 
+
 def get_stock_price(symbol, retries=3):
     full_symbol = symbol.upper() + ".BO"  
     for attempt in range(retries):
